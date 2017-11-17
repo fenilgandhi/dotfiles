@@ -1,0 +1,11 @@
+
+import os
+
+
+class Run():
+    def __repr__(self):
+        _ = [print("Clearing your screen") for _ in range(50)]
+        os.system('clear')
+        return "Your Console has been cleaned "
+
+cls = Run()
