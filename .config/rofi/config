@@ -1,1 +1,1 @@
-rofi.theme: ~/.i3/rofi-config.rasi
+rofi.theme : /usr/share/rofi/themes/ColdFired.rasi

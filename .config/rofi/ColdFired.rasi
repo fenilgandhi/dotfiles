@@ -1,0 +1,107 @@
+/**
+ * ROFI Color theme
+ * User: Coldfire
+ */
+
+* {
+  black     : rgba ( 51, 51, 51, 93 % );
+  white     : rgba ( 255, 255, 255, 100 % );  
+  red       : rgba ( 220, 50, 47, 100 % );
+
+  lightblue : rgba ( 17, 170, 170, 100 % );
+  background-color: transparent;
+
+  window-background : #033C73f0;
+  console-background : @black;
+  console-text : @red;
+}
+
+
+#window {
+    border-radius: 5px;
+    background-color: @window-background;
+    padding:150 200 150 200 ;
+    children: [vertb, mainbox];
+}
+
+
+#mainbox {
+    border:0;
+    spacing: 0;
+    children: [ inputbar, message, listview ];
+}
+
+#inputbar { 
+    background-color: @console-background;
+    border:1 0 0 0;
+    border-radius: 5px;
+    border-color: @black;
+    padding: 11px;
+}
+
+#prompt{
+    background-color: @console-background;
+    color: @white;
+    border: 0 0 2 0;
+    border-color: @lightblue;
+    padding : 5;
+}
+
+#entry {
+    padding : 5;
+    background-color: @console-background;
+    color: @white;
+}
+
+#listview {
+    border : 0 ;
+    border-radius : 40;
+    padding: 20;
+    background-color: transparent;
+}
+
+#element{
+    border: 12px;
+    border-radius:3px;
+    border-color: @transparent;    
+    padding:3px;
+    vertical-align: 0.5;
+}
+
+#element selected {
+    background-color: @white;
+    color: @black;
+}
+
+#element normal {
+    background-color: @console-background;
+    color: @console-text;
+}
+
+#element alternate normal {
+    background-color: @console-background;
+    color: @console-text;
+}
+
+#vertb {
+    expand: false;
+    children: [ dummy0, sidebar, dummy1  ];
+}
+
+#dummy0,  dummy1 {
+    expand: true;
+}
+
+configuration {
+    modi: "window,run,combi";
+    combi-modi: "window,run";
+    show-icons: true;
+    terminal: "termite";
+    fake-transparency: true;
+    kb-primary-paste: "Control+V";
+    
+    width: 100;
+    lines: 8;
+    location : 1;
+    font: "System San Francisco Display 16";
+}

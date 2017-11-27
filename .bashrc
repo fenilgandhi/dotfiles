@@ -4,6 +4,9 @@
 
 [[ $- != *i* ]] && return
 
+[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+
 colors() {
 	local fgc bgc vals seq0
 
@@ -31,9 +34,9 @@ colors() {
 	done
 }
 
-[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 
-[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+
 
 alias cls='clear'
 alias lol="exit;exit;"
@@ -45,6 +48,9 @@ alias editconfig='subl ./.i3/config'
 
 export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=subl
+export BROWSER=chromium
+
+weather() { curl wttr.in ;}
 
 random1() {
 echo '************************************************************************************************************************************'
@@ -86,4 +92,9 @@ echo '**      8 8888          .8888`8888. `88.88.    8         `Y8o.`     8 8888
 echo '**      8 8888          8`       `8. `88.88.   8            `Yo     8 8888 8    888888888888     **'
 echo '**                                                                                               **'
 echo '***************************************************************************************************'
+}
+
+open() {
+	cd $1;
+	ls
 }
