@@ -1,0 +1,18 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Anaconda",
+		"BracketHighlighter",
+		"Color Highlighter",
+		"Marking Changed Rows",
+		"Neon Color Scheme",
+		"One Dark Material - Theme",
+		"Package Control",
+		"PowerCursors",
+		"WordCount"
+	]
+}

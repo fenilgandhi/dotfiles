@@ -16,19 +16,20 @@
 # Setup `Win` Key( Mod4 ) as Modifier
 set $mod Mod4
 
-set $terminal 			terminal
+set $terminal 			i3-sensible-terminal
 set $browser 			chromium
 set $filemanager 		pcmanfm
 set $texteditor			subl3
 
-set $polybarscript 		~/.i3/polybar/launch.sh
+set $flashscript 		/home/alex/.i3/scripts/flash_win.sh
+set $polybarscript 		/home/alex/.i3/polybar/launch.sh
 
 
 set $flash 				exec --no-startup-id bash $flashscript
 set $volup				exec --no-startup-id amixer sset Master 5%+; exec amixer sget  Master | grep -Po "\[[^%]+%\]" | tr '[\n]' ' ' | xargs -L 1 notify-send "Volume set to $1"
 set $voldown 			exec --no-startup-id amixer sset Master 5%-; exec amixer sget  Master | grep -Po "\[[^%]+%\]" | tr '[\n]' ' ' | xargs -L 1 notify-send "Volume set to $1"
 set $mute				exec --no-startup-id amixer sset Master toggle; exec amixer sget  Master | grep -Po "\[[^%]+%\]" | tr '[\n]' ' ' | xargs -L 1 notify-send "Volume set to $1"
-set $lockscreen			~/.i3/i3lock-script.sh
+set $lockscreen			/home/alex/.i3/i3lock-script.sh
 
 #########################
 #	Ui Settings
@@ -43,14 +44,13 @@ font xft:SFNS Display UltraLight 12
 #    Startup Sequence 
 ##########################
 # { Auto-Lock, Sound, PAM, Wallpaper, Network, Power, Indian flag(Keyboard), Conky, Mount all drives, Polybar }
-exec --no-startup-id xautolock -time 0 -locker exec $lockscreen
+exec --no-startup-id xautolock -time 5 -locker $lockscreen
 exec --no-startup-id volumeicon             
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id sbxkb
-#exec --no-startup-id start_conky_green
 exec --no-startup-id sudo mount -a
 exec_always --no-startup-id $polybarscript
 exec_always --no-startup-id ff-theme-util
@@ -74,6 +74,7 @@ exec_always --no-startup-id fix_xcursor
 	bindsym Mod1+F4				kill
 	bindsym Print 	       		exec --no-startup-id i3-scrot                       					
 	bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+	bindsym $mod+i 				exec xrandr-invert-colors
 
 
 #---  i3-gaps  ---#
@@ -151,9 +152,10 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 #--- Layout Changes ---#
 	# change container layout (stacked, tabbed, toggle split)
-	bindsym $mod+F1 			layout stacking
+	bindsym $mod+F1 			layout toggle split
+	bindsym $mod+F3 			layout stacking
 	bindsym $mod+F2 			layout tabbed
-	bindsym $mod+F3 			layout toggle split
+	
 
 	# toggle fullscreen mode for the focused container
 	bindsym $mod+F11 			fullscreen toggle; exec notify-send 'Fullscreen Toggled'
@@ -182,14 +184,14 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 #--- Intrusion Prevention ---#
 
-	# Professor has arrived (Finally !!!)
+	# The "Physical" World is calling !!!
 	bindsym $mod+Delete	 exec $mute ; exec $pause ; workspace lmao ; exec $terminal -e htop ; exec $terminal -e screenfetch
 
 	# Assholes Protection ( Lock screen ) 
 	bindsym $mod+l exec $lockscreen
 
 	# Time to test a new theme ( Restart i3 inplace )
-	bindsym $mod+Shift+r 	restart
+	bindsym $mod+Shift+r  restart
 
 
 	# Set shut down, restart and locking features
@@ -208,11 +210,8 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 		bindsym Escape mode "default"
 	}
 
-
-
 for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 for_window [class="Sublime"] gaps outer 0
-
 
 #Volume keys
 bindsym $mod+plus		$volup
@@ -220,12 +219,4 @@ bindsym $mod+minus 		$voldown
 bindsym XF86AudioLowerVolume	$voldown
 bindsym XF86AudioRaiseVolume	$volup
 
-###---Dropdown/Scratchpad Windows---###
-#First I have a tmux window used for background scripts. I'll later bind this to mod+u.
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 640 480
-for_window [instance="dropdown"] move position center
-for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $terminal -name dropdown -e tmux
-
-#exec chromium --incognito https://www.bobibanking.com
+exec chromium --incognito https://www.google.co.in/search?q=bobibanking
