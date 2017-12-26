@@ -18,7 +18,6 @@ secondary = ${xrdb:color6}
 alert = #bd2c40
 col = #00f
 
-
 [bar/example]
 monitor = ${env:MONITOR:LVDS-1}
 width = 100%
@@ -28,28 +27,28 @@ offset-y = 0
 radius = 2.0
 fixed-center = true
 
-background = ${colors.background}
+background = ${xrdb:color0}
 foreground = ${colors.foreground}
 
 line-size = 3
-line-color = {$xrdb:color1}
+line-color = ${xrdb:color0}
 
 border-size = 0
-border-color = {$xrdb:color1}
+border-color = ${xrdb:color15}
 
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin-left = 0
+module-margin-right = 0
 
 font-0 = inconsolata:pixelsize=12;1
 font-1 = fontawesome:size=11:antialias=false;0
 font-2= Arial:pixelsize=11;1
 
-modules-left = i3 cpu memory filesystem temperature  
+modules-left = sep i3 sep sep cpu memory filesystem temperature  
 modules-center = date
-modules-right =  wlan battery volume 
+modules-right =  wlan battery sep volume 
 
 tray-position = right
 tray-padding = 0
@@ -57,23 +56,11 @@ tray-padding = 0
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-[module/filesystem]
-type = internal/fs
-interval = 30
-
-mount-0 = /
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}:%percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
 
 label-mode-padding = 1
 label-mode-foreground = #000
@@ -81,13 +68,15 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${xrdb:color0}
-label-focused-underline = ${xrdb:color4}
+label-focused-background = ${xrdb:color2}
+label-focused-underline = ${xrdb:color15}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
 label-unfocused-padding = 1
+label-unfocused-background = ${xrdb:color8}
+label-unfocused-underline  = ${xrdb:color8}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
@@ -97,82 +86,62 @@ label-visible-padding = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${xrdb:color0}
-label-urgent-padding = 1
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song> <label-time>
-# <icon-prev> <toggle> <icon-next>
-#<toggle>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-#icon-prev = <-
-#icon-stop = X
-#icon-play-prefix = #f00
-#icon-play = (Paused)
-#icon-pause = 
-#icon-next = ->
-
-;bar-progress-width = 45
-;bar-progress-indicator = |
-;bar-progress-fill = -
-;bar-progress-empty = -
-
-label-song =  %artist% - %title%
-label-song-maxlen = 70
-label-song-ellipsis = true
-
-
+label-urgent-background = ${xrdb:color9}
+label-urgent-padding = 2
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " C:"
-label = %percentage%%
 
-format-prefix-foreground = ${xrdb:color2}
-label-foreground = ${xrdb:color2}
-format-underline = ${xrdb:color2}
+format-prefix = " C:"
+format-prefix-foreground = ${xrdb:color15}
+format-prefix-background = ${xrdb:color4}
+
+label = "%percentage%% "
+label-foreground = ${xrdb:color15}
+label-background = ${xrdb:color4}
+
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "M:"
-label = %percentage_used%%
-format-prefix-foreground = ${xrdb:color6}
-label-foreground = ${xrdb:color6}
-format-underline = ${xrdb:color6}
+format-prefix = " M:"
+label = "%percentage_used%% "
+format-prefix-foreground = ${xrdb:color15}
+label-foreground = ${xrdb:color15}
+format-prefix-background = ${xrdb:color2}
+label-background = ${xrdb:color2}
 
-[module/wlan]
-type = internal/network
-interface = wlp2s0
-interval = 3.0
 
-format-connected = <label-connected>
-format-connected-underline = ${xrdb:color5}
-;format-connected-underline = #9f78e1
-label-connected = %essid%
+[module/filesystem]
+type = internal/fs
+interval = 30
+mount-0 = /
+label-mounted = "%{F#a0a} %mountpoint%:%{F#000}%percentage_used%% "
+label-mounted-background = ${xrdb:color6}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
 
-ramp-signal-foreground = ${colors.foreground-alt}
+format = "<label>"
+format-warn = !!!!!!!!!!!!!! CPU : <label-warn> !!!!!!!!!!!!!
+format-warn-background = ${xrdb:color4} 
+format-warn-underline = ${xrdb:color2}
+
+label = " %temperature% " 
+label-background = ${xrdb:color5} 
+label-warn = %temperature%
+label-warn-foreground = ${xrdb:color15} 
 
 [module/eth]
 type = internal/network
 interface = enp0s25
 interval = 3.0
 
-format-connected-underline = ${xrdb:color2}
-;format-connected-underline = ${xrdb:color10}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -182,6 +151,29 @@ format-disconnected = "---"
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-foreground = ${xrdb:color15} 
+format-connected-background = ${xrdb:color0} 
+format-connected-underline = ${xrdb:color9}
+label-connected = " %essid% %{F#5f5}↓:%downspeed% %{F#ff5}↑:%upspeed% "
+
+format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+
+
+[module/sep]
+type = custom/text
+content = "  "
 
 [module/date]
 type = internal/date
@@ -193,15 +185,15 @@ date = "%d/%b/%a"
 time = "%I:%M:%S"
 time-alt = "%I:%M:%S"
 
-format-underline = ${xrdb:color12}
-;format-underline = #0a6cf5
-
-label = %time% |  %date%
+format-foreground = ${xrdb:color0} 
+format-background = ${xrdb:color9}
+format-underline = ${xrdb:color4}
+label = "  %time% |  %date%  "
 
 [module/volume]
 type = internal/volume
 
-format-volume = <bar-volume>
+format-volume = " <bar-volume> "
 bar-volume-width = 10
 bar-volume-foreground-0 = ${xrdb:color10}
 bar-volume-foreground-1 = ${xrdb:color10}
@@ -209,7 +201,7 @@ bar-volume-foreground-2 = ${xrdb:color10}
 bar-volume-foreground-3 = ${xrdb:color10}
 bar-volume-foreground-4 = ${xrdb:color10}
 bar-volume-foreground-5 = ${xrdb:color11}
-bar-volume-foreground-6 = ${xrdb:color15}
+bar-volume-foreground-6 = ${xrdb:color9}
 bar-volume-gradient = true
 bar-volume-indicator = 
 bar-volume-indicator-font = 2
@@ -225,9 +217,9 @@ battery = BAT0
 adapter = ADP1
 full-at = 98
 	
-format-charging = "⏵ <label-charging>% <animation-charging> "
-format-charging-underline = ${xrdb:color6}
-format-charging-foreground = ${xrdb:color15}
+format-charging = "⏵  <label-charging>% <animation-charging>  ⏵"
+format-charging-underline = ${xrdb:color4}
+format-charging-foreground = ${xrdb:color0}
 format-charging-background = ${xrdb:color12}
 label-charging = %percentage%
 
@@ -243,21 +235,6 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-framerate = 400
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = "C:<label>"
-format-underline = ${xrdb:color1}
-format-warn = !!!!!!!!!!!!!! CPU : <label-warn> !!!!!!!!!!!!!
-format-warn-background = ${xrdb:color3} 
-format-warn-underline = ${self.format-underline}
-
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${xrdb:color15} 
 
 
 [settings]
