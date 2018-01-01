@@ -7,14 +7,14 @@ ZSH=/usr/share/oh-my-zsh/
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="random"
+ZSH_THEME="daveverwer"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-ZSH_THEME_RANDOM_CANDIDATES=("suvash" "lukerandall" "daveverwer" "obraun" "fino-time")
+ZSH_THEME_RANDOM_CANDIDATES=("lukerandall" "daveverwer")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -81,6 +81,7 @@ alias python='python3'
 alias chrome='google-chrome-stable'
 alias editconfig='subl ./.i3/config'
 alias rvm-prompt='echo "" '
+alias rm="rm -i"
 
 weather() { curl wttr.in ;}
 

@@ -16,9 +16,9 @@
 # Setup `Win` Key( Mod4 ) as Modifier
 set $mod Mod4
 
-set $terminal 			i3-sensible-terminal
+set $terminal 			xterm
 set $browser 			chromium
-set $filemanager 		pcmanfm
+set $filemanager 		nautilus
 set $texteditor			subl3
 
 set $flashscript 		/home/alex/.i3/scripts/flash_win.sh
@@ -219,4 +219,4 @@ bindsym $mod+minus 		$voldown
 bindsym XF86AudioLowerVolume	$voldown
 bindsym XF86AudioRaiseVolume	$volup
 
-exec chromium --incognito https://www.google.co.in/search?q=bobibanking
+exec pkill -9 compton

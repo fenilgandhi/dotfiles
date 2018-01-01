@@ -18,6 +18,7 @@
 
 xterm*faceName: SFNS Display UltraLight
 xterm*faceSize: 12
+xTerm*selectToClipboard: true
 
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
 xterm*loginshell: true

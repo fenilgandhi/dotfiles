@@ -1,4 +1,4 @@
-; vim:ft=dosini
+	; vim:ft=dosini
 ;=====================================================
 ;
 ;   To learn more about how to configure Polybar
@@ -94,12 +94,12 @@ type = internal/cpu
 interval = 2
 
 format-prefix = " C:"
-format-prefix-foreground = ${xrdb:color15}
-format-prefix-background = ${xrdb:color4}
+format-prefix-foreground = ${xrdb:color4}
+format-prefix-underline = ${xrdb:color4}
 
 label = "%percentage%% "
-label-foreground = ${xrdb:color15}
-label-background = ${xrdb:color4}
+label-foreground = ${xrdb:color4}
+label-underline = ${xrdb:color4}
 
 
 [module/memory]
@@ -107,18 +107,18 @@ type = internal/memory
 interval = 2
 format-prefix = " M:"
 label = "%percentage_used%% "
-format-prefix-foreground = ${xrdb:color15}
-label-foreground = ${xrdb:color15}
-format-prefix-background = ${xrdb:color2}
-label-background = ${xrdb:color2}
+format-prefix-foreground = ${xrdb:color2}
+label-foreground = ${xrdb:color2}
+format-prefix-underline = ${xrdb:color2}
+label-underline = ${xrdb:color2}
 
 
 [module/filesystem]
 type = internal/fs
 interval = 30
 mount-0 = /
-label-mounted = "%{F#a0a} %mountpoint%:%{F#000}%percentage_used%% "
-label-mounted-background = ${xrdb:color6}
+label-mounted = "%{F#0aa} %mountpoint%:%{F#0aa}%percentage_used%% "
+label-mounted-underline = ${xrdb:color6}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -133,7 +133,8 @@ format-warn-background = ${xrdb:color4}
 format-warn-underline = ${xrdb:color2}
 
 label = " %temperature% " 
-label-background = ${xrdb:color5} 
+label-foreground = ${xrdb:color5} 
+label-underline = ${xrdb:color5} 
 label-warn = %temperature%
 label-warn-foreground = ${xrdb:color15} 
 
@@ -161,7 +162,7 @@ interval = 3.0
 format-connected = <label-connected>
 format-connected-foreground = ${xrdb:color15} 
 format-connected-background = ${xrdb:color0} 
-format-connected-underline = ${xrdb:color9}
+format-connected-underline = ${xrdb:color13}
 label-connected = " %essid% %{F#5f5}↓:%downspeed% %{F#ff5}↑:%upspeed% "
 
 format-disconnected = <label-disconnected>
@@ -185,9 +186,9 @@ date = "%d/%b/%a"
 time = "%I:%M:%S"
 time-alt = "%I:%M:%S"
 
-format-foreground = ${xrdb:color0} 
-format-background = ${xrdb:color9}
-format-underline = ${xrdb:color4}
+format-foreground = ${xrdb:color4} 
+format-background = ${xrdb:color7}
+format-underline = ${xrdb:color1}
 label = "  %time% |  %date%  "
 
 [module/volume]
@@ -218,12 +219,12 @@ adapter = ADP1
 full-at = 98
 	
 format-charging = "⏵  <label-charging>% <animation-charging>  ⏵"
-format-charging-underline = ${xrdb:color4}
-format-charging-foreground = ${xrdb:color0}
-format-charging-background = ${xrdb:color12}
+format-charging-underline = ${xrdb:color8}
+format-charging-foreground = ${xrdb:color7}
+format-charging-background = ${xrdb:color8}
 label-charging = %percentage%
 
-format-discharging = "!!!! <label-discharging>left !!!!"
+format-discharging = "!!! <label-discharging>left !!!"
 format-discharging-underline = ${xrdb:color9}
 format-discharging-foreground = ${xrdb:color15}
 format-discharging-background = ${xrdb:color9}
