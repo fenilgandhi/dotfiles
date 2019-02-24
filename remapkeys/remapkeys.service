@@ -1,0 +1,11 @@
+[Unit]
+Description=Remap Keyboard Keys
+
+
+[Service]
+Type=simple
+ExecStart=sh /home/alex/.config/dotfiles/remapkeys/remapkeys.sh
+
+
+[Install]
+WantedBy=multi-user.target

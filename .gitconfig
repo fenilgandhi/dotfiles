@@ -1,0 +1,44 @@
+[user]
+	email = fanilgandhi@gmail.com
+	name = Fenil A Gandhi
+	signingkey = CA998AFA4F18AB00
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
+[core]
+    fileMode = false
+    whitespace = space-before-tab
+    editor = subl -n -w
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[credential]
+    helper = cache --timeout=360
+[color]
+    diff = always
+    status = always
+    branch = always
+	ui = true
+    interactive = always
+    grep = always
+    pager = true
+    decorate = always
+    showbranch = always
+[color "status"]
+    changed = yellow
+    added = green
+    untracked = red
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+    changeHunkIndicators = false
+    stripLeadingSymbols = false
